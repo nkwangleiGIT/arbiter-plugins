@@ -119,7 +119,7 @@ func formatRawValues(rawValue model.Value) ([]CalculateAux, error) {
 			return ans, fmt.Errorf("can't conver to scaler")
 		}
 		ans = append(ans, CalculateAux{
-			Timestamp: int64(scalarObj.Timestamp.Time().UnixMilli()),
+			Timestamp: scalarObj.Timestamp.Time().UnixMilli(),
 			Value:     float64(scalarObj.Value),
 		})
 	case model.ValMatrix:
@@ -140,7 +140,7 @@ func formatRawValues(rawValue model.Value) ([]CalculateAux, error) {
 			klog.V(5).Infof("values length: %d\n", len(v.Values))
 			for _, sample := range v.Values {
 				ans = append(ans, CalculateAux{
-					Timestamp: int64(sample.Timestamp.Time().UnixMilli()),
+					Timestamp: sample.Timestamp.Time().UnixMilli(),
 					Value:     float64(sample.Value),
 				})
 			}
@@ -155,7 +155,7 @@ func formatRawValues(rawValue model.Value) ([]CalculateAux, error) {
 
 		for _, sample := range vector {
 			ans = append(ans, CalculateAux{
-				Timestamp: int64(sample.Timestamp.Time().UnixMicro()),
+				Timestamp: sample.Timestamp.Time().UnixMicro(),
 				Value:     float64(sample.Value),
 			})
 		}
